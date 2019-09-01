@@ -19,6 +19,18 @@ class SearchBar extends React.Component {
     this.props.searchBy(this.state.search);
   };
 
+  handleReset = e => {
+    e.preventDefault();
+    this.setState({ search: '' });
+    this.props.showAll();
+  };
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.data !== prevProps.data) {
+  //     this.setState({ search: '' });
+  //   }
+  // }
+
   render() {
     return (
       <form onSubmit={this.handleSearch}>
@@ -30,7 +42,7 @@ class SearchBar extends React.Component {
           placeholder="...search"
         />
         <button type="submit">Search</button>
-        <button onClick={this.props.showAll}>Reset</button>
+        <button onClick={this.handleReset}>Reset</button>
       </form>
     );
   }

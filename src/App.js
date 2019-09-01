@@ -9,13 +9,13 @@ const data = [
     task: 'Organize Garage',
     id: 1528817077286,
     completed: false,
-    show: false,
+    show: true,
   },
   {
     task: 'Bake Cookies',
     id: 1528817084358,
     completed: false,
-    show: false,
+    show: true,
   },
 ];
 
@@ -40,11 +40,6 @@ class App extends React.Component {
   //     window.localStorage.setItem('data', JSON.stringify(this.state));
   //   }
   // }
-
-  componentDidUpdate(prevState) {
-    if (this.state.data !== prevState.data) {
-    }
-  }
 
   addItem = item => {
     const newItem = {
