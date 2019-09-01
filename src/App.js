@@ -28,6 +28,16 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState(JSON.parse(window.localStorage.getItem('data')));
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.data !== prevState.data) {
+      window.localStorage.setItem('data', JSON.stringify(this.state));
+    }
+  }
+
   addItem = item => {
     const newItem = {
       task: item,
