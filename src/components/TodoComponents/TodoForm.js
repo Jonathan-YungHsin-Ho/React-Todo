@@ -26,6 +26,12 @@ class TodoForm extends React.Component {
     }
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.data !== prevProps.data) {
+      this.setState({ item: '' });
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.submitItem}>
