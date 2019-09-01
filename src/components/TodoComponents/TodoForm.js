@@ -19,6 +19,13 @@ class TodoForm extends React.Component {
     this.props.addItem(this.state.item);
   };
 
+  handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.props.addItem(this.state.item);
+    }
+  };
+
   render() {
     return (
       <form onSubmit={this.submitItem}>
@@ -29,7 +36,7 @@ class TodoForm extends React.Component {
           onChange={this.handleChanges}
           placeholder="...todo"
         />
-        <button>Add Todo</button>
+        <button type="submit">Add Todo</button>
         <button>Clear Completed</button>
       </form>
     );
