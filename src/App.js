@@ -37,14 +37,22 @@ class App extends React.Component {
     this.setState({
       data: [...this.state.data, newItem],
     });
-    console.log(data);
+  };
+
+  toggleItem = id => {
+    console.log(id);
+    this.setState({
+      data: this.state.data.map(item => {
+        return item.id === id ? { ...item, completed: !item.completed } : item;
+      }),
+    });
   };
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList data={this.state.data} />
+        <TodoList data={this.state.data} toggleItem={this.toggleItem} />
         <TodoForm addItem={this.addItem} />
       </div>
     );
