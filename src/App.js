@@ -2,17 +2,20 @@ import React from 'react';
 
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import SearchBar from './components/TodoComponents/TodoSearch';
 
 const data = [
   {
     task: 'Organize Garage',
     id: 1528817077286,
     completed: false,
+    show: false,
   },
   {
     task: 'Bake Cookies',
     id: 1528817084358,
     completed: false,
+    show: false,
   },
 ];
 
@@ -28,13 +31,18 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.setState(JSON.parse(window.localStorage.getItem('data')));
-  }
+  // componentDidMount() {
+  //   this.setState(JSON.parse(window.localStorage.getItem('data')));
+  // }
+
+  // componentDidUpdate(prevState) {
+  //   if (this.state.data !== prevState.data) {
+  //     window.localStorage.setItem('data', JSON.stringify(this.state));
+  //   }
+  // }
 
   componentDidUpdate(prevState) {
     if (this.state.data !== prevState.data) {
-      window.localStorage.setItem('data', JSON.stringify(this.state));
     }
   }
 
@@ -43,6 +51,7 @@ class App extends React.Component {
       task: item,
       id: Date.now(),
       completed: false,
+      show: true,
     };
     this.setState({
       data: [...this.state.data, newItem],
@@ -61,10 +70,31 @@ class App extends React.Component {
     this.setState({ data: this.state.data.filter(item => !item.completed) });
   };
 
+  showAll = () => {
+    this.setState({
+      data: this.state.data.map(item => {
+        return { ...item, show: true };
+      }),
+    });
+  };
+
+  searchBy = search => {
+    this.setState({
+      data: this.state.data.map(item => {
+        return !JSON.stringify(item)
+          .toLowerCase()
+          .includes(search.toLowerCase())
+          ? { ...item, show: false }
+          : item;
+      }),
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <SearchBar showAll={this.showAll} searchBy={this.searchBy} />
         <TodoList data={this.state.data} toggleItem={this.toggleItem} />
         <TodoForm
           data={this.state.data}
