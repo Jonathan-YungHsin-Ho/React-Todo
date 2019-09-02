@@ -36,9 +36,9 @@ const GlobalStyle = createGlobalStyle`
 
 const AppWrapper = styled.div`
   width: 80%;
-  margin: 20px auto;
+  margin: 40px auto;
   padding: 5%;
-  border: 2px solid white;
+  border: 2px solid gray;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -73,6 +73,17 @@ const AppWrapper = styled.div`
       font-size: 18px;
       font-family: 'Roboto', sans-serif;
       padding: 10px 2%;
+      border: 2px solid gray;
+      border-top: none;
+      background-color: #2d2d37;
+      color: white;
+      outline: none;
+
+      &:hover {
+        background-color: white;
+        color: #2d2d37;
+        opacity: 0.8;
+      }
     }
   }
 `;
@@ -121,9 +132,11 @@ class App extends React.Component {
       completed: false,
       show: true,
     };
-    this.setState({
-      data: [...this.state.data, newItem],
-    });
+    if (item !== '') {
+      this.setState({
+        data: [...this.state.data, newItem],
+      });
+    }
   };
 
   toggleItem = id => {
