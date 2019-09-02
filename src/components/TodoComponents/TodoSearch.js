@@ -25,12 +25,6 @@ class SearchBar extends React.Component {
     this.props.showAll();
   };
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.data !== prevProps.data) {
-  //     this.setState({ search: '' });
-  //   }
-  // }
-
   render() {
     return (
       <form onSubmit={this.handleSearch}>
