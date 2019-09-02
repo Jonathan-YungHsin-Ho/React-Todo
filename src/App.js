@@ -1,8 +1,81 @@
 import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 import SearchBar from './components/TodoComponents/TodoSearch';
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #2d2d37;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  div,
+  p,
+  span {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+`;
+
+const AppWrapper = styled.div`
+  width: 80%;
+  margin: 20px auto;
+  padding: 5%;
+  border: 2px solid white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    align-self: center;
+    margin-top: 0;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 24px;
+    margin: 40px 5%;
+  }
+
+  form {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    input {
+      width: 100%;
+      font-size: 18px;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px 2%;
+    }
+
+    button {
+      flex-grow: 1;
+      font-size: 18px;
+      font-family: 'Roboto', sans-serif;
+      padding: 10px 2%;
+    }
+  }
+`;
 
 const data = [
   {
@@ -87,7 +160,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <AppWrapper>
+        <GlobalStyle />
         <h2>Welcome to your Todo App!</h2>
         <SearchBar showAll={this.showAll} searchBy={this.searchBy} />
         <TodoList data={this.state.data} toggleItem={this.toggleItem} />
@@ -96,7 +170,7 @@ class App extends React.Component {
           addItem={this.addItem}
           clearCompleted={this.clearCompleted}
         />
-      </div>
+      </AppWrapper>
     );
   }
 }

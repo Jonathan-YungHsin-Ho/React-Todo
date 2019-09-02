@@ -35,6 +35,7 @@ class SearchBar extends React.Component {
           onChange={this.handleChanges}
           placeholder="...search"
         />
+        <br />
         <button type="submit">Search</button>
         <button onClick={this.handleReset}>Reset</button>
       </form>
