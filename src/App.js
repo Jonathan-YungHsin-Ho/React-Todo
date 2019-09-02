@@ -36,8 +36,9 @@ const GlobalStyle = createGlobalStyle`
 
 const AppWrapper = styled.div`
   width: 80%;
+  max-width: 600px;
   margin: 40px auto;
-  padding: 5%;
+  padding: 10px 20px;
   border: 2px solid gray;
   border-radius: 20px;
   display: flex;
